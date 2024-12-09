@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>CCF Recommended Academic Journals and Conferences (2022)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f6fa;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        .filters {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        label {
+            font-weight: 600;
+            color: #34495e;
+        }
+
+        select,
+        input {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            min-width: 200px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f5f6fa;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .rank-A {
+            border-left: 4px solid #4CAF50;
+        }
+
+        .rank-B {
+            border-left: 4px solid #2196F3;
+        }
+
+        .rank-C {
+            border-left: 4px solid #FFC107;
+        }
+
+        a {
+            color: #2196F3;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .search-count {
+            margin: 10px 0;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>CCF Recommended Academic Journals and Conferences (2022)</h1>
+
+        <div class="filters">
+            <div class="filter-group">
+                <label for="categoryFilter">Category</label>
+                <select id="categoryFilter">
+                    <!-- <option value="">All Categories</option> -->
+                    <option value="ai">Artificial Intelligence</option>
+                    <option value="network">Computer Networks</option>
+                    <option value="graphics">Graphics/Multimedia</option>
+                    <option value="cross">Cross/Emerging</option>
+                    <!-- <option value="arch">Architecture/Parallel/Distributed Computing</option>
+                    <option value="security">Network & Information Security</option>
+                    <option value="theory">Computer Science Theory</option>
+                    <option value="hci">Human-Computer Interaction</option> -->
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="rankFilter">Rank</label>
+                <select id="rankFilter">
+                    <option value="">All Ranks</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="typeFilter">Type</label>
+                <select id="typeFilter">
+                    <option value="">All Types</option>
+                    <option value="journal">Journal</option>
+                    <option value="conference">Conference</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="search">Search</label>
+                <input type="text" id="search" placeholder="Search by name...">
+            </div>
+        </div>
+
+        <div class="search-count">
+            Showing <span id="resultCount">0</span> results
+        </div>
+
+        <table id="ccfTable">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Type</th>
+                    <th>Rank</th>
+                    <th>Abbr.</th>
+                    <th>Full Name</th>
+                    <th>Publisher</th>
+                    <th>Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data rows will be inserted here by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // CCF data
+        const ccfData = [
+            // Architecture/Parallel/Distributed Computing - A Rank Journals
+            {
+                category: "arch",
+                type: "journal",
+                rank: "A",
+                abbr: "TOCS",
+                name: "ACM Transactions on Computer Systems",
+                publisher: "ACM",
+                link: "http://dblp.uni-trier.de/db/journals/tocs/"
+            },
+            {
+                category: "arch",
+                type: "journal",
+                rank: "A",
+                abbr: "TOS",
+                name: "ACM Transactions on Storage",
+                publisher: "ACM",
+                link: "http://dblp.uni-trier.de/db/journals/tos/"
+            },
+            {
+                category: "arch",
+                type: "journal",
+                rank: "A",
+                abbr: "TCAD",
+                name: "IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems",
+                publisher: "IEEE",
+                link: "http://dblp.uni-trier.de/db/journals/tcad/"
+            },
+            {
+                category: "arch",
+                type: "journal",
+                rank: "A",
+                abbr: "TPDS",
+                name: "IEEE Transactions on Parallel and Distributed Systems",
+                publisher: "IEEE",
+                link: "http://dblp.uni-trier.de/db/journals/tpds/"
+            },
+            // Architecture/Parallel/Distributed Computing - B Rank Journals
+            {
+                category: "arch",
+                type: "journal",
+                rank: "B",
+                abbr: "TAAS",
+                name: "ACM Transactions on Autonomous and Adaptive Systems",
+                publisher: "ACM",
+                link: "http://dblp.uni-trier.de/db/journals/taas/"
+            },
+            {
+                category: "arch",
+                type: "journal",
+                rank: "B",
+                abbr: "JPDC",
+                name: "Journal of Parallel and Distributed Computing",
+                publisher: "Elsevier",
+                link: "http://dblp.uni-trier.de/db/journals/jpdc/"
+            },
+            // Artificial Intelligence - A Rank Journals
+            {
+                category: "ai",
+                type: "journal",
+                rank: "A",
+                abbr: "TPAMI",
+                name: "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+                publisher: "IEEE",
+                link: "http://dblp.uni-trier.de/db/journals/tpami/"
+            },
+            {
+                category: "ai",
+                type: "journal",
+                rank: "A",
+                abbr: "AI",
+                name: "Artificial Intelligence",
+                publisher: "Elsevier",
+                link: "http://dblp.uni-trier.de/db/journals/ai/"
+            },
+            {
+                category: "ai",
+                type: "journal",
+                rank: "A",
+                abbr: "IJCV",
+                name: "InternationalJournal of Computer Vision",
+                publisher: "Springer",
+                link: "http://dblp.uni-trier.de/db/journals/ijcv/"
+            },
+            {
+                category: "ai",
+                type: "journal",
+                rank: "A",
+                abbr: "JMLR",
+                name: "Journal of Machine Learning Research",
+                publisher: "MIT Press",
+                link: "http://dblp.uni-trier.de/db/journals/jmlr/"
+            },// Artificial Intelligence A类会议
+            {
+                category: "ai",
+                type: "conference",
+                rank: "A",
+                abbr: "AAAI",
+                name: "AAAI Conference on Artificial Intelligence",
+                publisher: "AAAI",
+                link: "http://dblp.uni-trier.de/db/conf/aaai/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "A",
+                abbr: "NeurIPS",
+                name: "Conference on Neural Information Processing Systems",
+                publisher: "MIT Press",
+                link: "http://dblp.uni-trier.de/db/conf/nips/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "A",
+                abbr: "ACL",
+                name: "Annual Meeting of the Association for Computational Linguistics",
+                publisher: "ACL",
+                link: "http://dblp.uni-trier.de/db/conf/acl/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "A",
+                abbr: "CVPR",
+                name: "IEEE/CVF Computer Vision and Pattern Recognition Conference",
+                publisher: "IEEE",
+                link: "http://dblp.uni-trier.de/db/conf/cvpr/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "A",
+                abbr: "ICCV",
+                name: "International Conference on Computer Vision",
+                publisher: "IEEE",
+                link: "http://dblp.uni-trier.de/db/conf/iccv/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "A",
+                abbr: "ICML",
+                name: "International Conference on Machine Learning",
+                publisher: "ACM",
+                link: "http://dblp.uni-trier.de/db/conf/icml/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "A",
+                abbr: "IJCAI",
+                name: "International Joint Conference on Artificial Intelligence",
+                publisher: "Morgan Kaufmann",
+                link: "http://dblp.uni-trier.de/db/conf/ijcai/"
+            },
+            // Artificial Intelligence B类会议
+            {
+                category: "ai",
+                type: "conference",
+                rank: "B",
+                abbr: "COLT",
+                name: "Annual Conference on Computational Learning Theory",
+                publisher: "Springer",
+                link: "http://dblp.uni-trier.de/db/conf/colt/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "B",
+                abbr: "EMNLP",
+                name: "Conference on Empirical Methods in Natural Language Processing",
+                publisher: "ACL",
+                link: "http://dblp.uni-trier.de/db/conf/emnlp/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "B",
+                abbr: "ECAI",
+                name: "European Conference on Artificial Intelligence",
+                publisher: "IOS Press",
+                link: "http://dblp.uni-trier.de/db/conf/ecai/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "B",
+                abbr: "ECCV",
+                name: "European Conference on Computer Vision",
+                publisher: "Springer",
+                link: "http://dblp.uni-trier.de/db/conf/eccv/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "B",
+                abbr: "ICRA",
+                name: "IEEE International Conference on Robotics and Automation",
+                publisher: "IEEE",
+                link: "http://dblp.uni-trier.de/db/conf/icra/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "B",
+                abbr: "ICAPS",
+                name: "International Conference on Automated Planning and Scheduling",
+                publisher: "AAAI",
+                link: "http://dblp.uni-trier.de/db/conf/aips/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "B",
+                abbr: "ICCBR",
+                name: "International Conference on Case-Based Reasoning",
+                publisher: "Springer",
+                link: "http://dblp.uni-trier.de/db/conf/iccbr/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "B",
+                abbr: "COLING",
+                name: "International Conference on Computational Linguistics",
+                publisher: "International Committee on Computational Linguistics",
+                link: "http://dblp.uni-trier.de/db/conf/coling/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "B",
+                abbr: "KR",
+                name: "International Conference on Principles of Knowledge Representation and Reasoning",
+                publisher: "Morgan Kaufmann",
+                link: "http://dblp.uni-trier.de/db/conf/kr/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "B",
+                abbr: "UAI",
+                name: "Conference onUncertainty in Artificial Intelligence",
+                publisher: "AUAI",
+                link: "http://dblp.uni-trier.de/db/conf/uai/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "B",
+                abbr: "AAMAS",
+                name: "International Joint Conference on Autonomous Agents and Multi-agent Systems",
+                publisher: "Springer",
+                link: "http://dblp.uni-trier.de/db/conf/atal/index.html"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "B",
+                abbr: "PPSN",
+                name: "Parallel Problem Solving from Nature",
+                publisher: "Springer",
+                link: "http://dblp.uni-trier.de/db/conf/ppsn/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "B",
+                abbr: "NAACL",
+                name: "North American Chapter of the Association for Computational Linguistics",
+                publisher: "Association for Computational Linguistics",
+                link: "http://dblp.uni-trier.de/db/conf/naacl/"
+            },
+            // Artificial Intelligence C类会议
+            {
+                category: "ai",
+                type: "conference",
+                rank: "C",
+                abbr: "AISTATS",
+                name: "International Conference on Artificial Intelligence and Statistics",
+                publisher: "JMLR",
+                link: "http://dblp.uni-trier.de/db/conf/aistats/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "C",
+                abbr: "ACCV",
+                name: "Asian Conference on Computer Vision",
+                publisher: "Springer",
+                link: "http://dblp.uni-trier.de/db/conf/accv/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "C",
+                abbr: "ACML",
+                name: "Asian Conference on Machine Learning",
+                publisher: "JMLR",
+                link: "http://dblp.uni-trier.de/db/conf/acml/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "C",
+                abbr: "BMVC",
+                name: "British Machine Vision Conference",
+                publisher: "British Machine Vision Association",
+                link: "http://dblp.uni-trier.de/db/conf/bmvc/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "C",
+                abbr: "NLPCC",
+                name: "CCF International Conference on Natural Language Processing and Chinese Computing",
+                publisher: "Springer",
+                link: "https://dblp.uni-trier.de/db/conf/nlpcc/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "C",
+                abbr: "CoNLL",
+                name: "Conference on Computational Natural Language Learning",
+                publisher: "Association for Computational Linguistics",
+                link: "http://dblp.uni-trier.de/db/conf/conll"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "C",
+                abbr: "GECCO",
+                name: "Genetic and Evolutionary Computation Conference",
+                publisher: "ACM",
+                link: "http://dblp.uni-trier.de/db/conf/gecco/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "C",
+                abbr: "ICTAI",
+                name: "IEEE International Conference on Tools with Artificial Intelligence",
+                publisher: "IEEE",
+                link: "http://dblp.uni-trier.de/db/conf/ictai/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "C",
+                abbr: "IROS",
+                name: "IEEE\\RSJ International Conference on Intelligent Robots and Systems",
+                publisher: "IEEE",
+                link: "http://dblp.uni-trier.de/db/conf/iros/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "C",
+                abbr: "ALT",
+                name: "International Conference on Algorithmic Learning Theory",
+                publisher: "Springer",
+                link: "http://dblp.uni-trier.de/db/conf/alt/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "C",
+                abbr: "ICANN",
+                name: "International Conference on Artificial Neural Networks",
+                publisher: "Springer",
+                link: "http://dblp.uni-trier.de/db/conf/icann/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "C",
+                abbr: "FG",
+                name: "IEEE International Conference on Automatic Face and Gesture Recognition",
+                publisher: "IEEE",
+                link: "http://dblp.uni-trier.de/db/conf/fgr/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "C",
+                abbr: "ICDAR",
+                name: "International Conference on Document Analysis and Recognition",
+                publisher: "IEEE",
+                link: "http://dblp.uni-trier.de/db/conf/icdar/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "C",
+                abbr: "ILP",
+                name: "International Conference on Inductive Logic Programming",
+                publisher: "Springer",
+                link: "http://dblp.uni-trier.de/db/conf/ilp/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "C",
+                abbr: "KSEM",
+                name: "International conference on Knowledge Science, Engineering and Management",
+                publisher: "Springer",
+                link: "http://dblp.uni-trier.de/db/conf/ksem/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "C",
+                abbr: "ICONIP",
+                name: "International Conference on Neural Information Processing",
+                publisher: "Springer",
+                link: "http://dblp.uni-trier.de/db/conf/iconip/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "C",
+                abbr: "ICPR",
+                name: "International Conference on Pattern Recognition",
+                publisher: "IEEE",
+                link: "http://dblp.uni-trier.de/db/conf/icpr/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "C",
+                abbr: "IJCB",
+                name: "International Joint Conference on Biometrics",
+                publisher: "IEEE",
+                link: "http://dblp.uni-trier.de/db/conf/icb/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "C",
+                abbr: "IJCNN",
+                name: "International Joint Conference on Neural Networks",
+                publisher: "IEEE",
+                link: "http://dblp.uni-trier.de/db/conf/ijcnn/"
+            },
+            {
+                category: "ai",
+                type: "conference",
+                rank: "C",
+                abbr: "PRICAI",
+                name: "Pacific Rim International Conference on Artificial Intelligence",
+                publisher: "Springer",
+                link: "http://dblp.uni-trier.de/db/conf/pricai/"
+            },
+            // Computer Graphics and Multimedia Conferences
+            // A level conferences
+            {
+                title: "ACM Transactions on Graphics",
+                abbr: "TOG",
+                category: "graphics",
+                type: "journal",
+                rank: "A",
+                publisher: "ACM",
+                url: "http://dblp.uni-trier.de/db/journals/tog/"
+            },
+            {
+                title: "IEEE Transactions on Image Processing",
+                abbr: "TIP",
+                category: "graphics",
+                type: "journal",
+                rank: "A",
+                publisher: "IEEE",
+                url: "http://dblp.uni-trier.de/db/journals/tip/"
+            },
+            {
+                title: "IEEE Transactions on Visualization and Computer Graphics",
+                abbr: "TVCG",
+                category: "graphics",
+                type: "journal",
+                rank: "A",
+                publisher: "IEEE",
+                url: "http://dblp.uni-trier.de/db/journals/tvcg/"
+            },
+
+            // B Class Journals
+            {
+                title: "ACM Transactions on Multimedia Computing, Communications and Applications",
+                abbr: "TOMM",
+                category: "graphics",
+                type: "journal",
+                rank: "B",
+                publisher: "ACM",
+                url: "http://dblp.uni-trier.de/db/journals/tomccap/"
+            },
+            {
+                title: "Computer Aided Geometric Design",
+                abbr: "CAGD",
+                category: "graphics",
+                type: "journal",
+                rank: "B",
+                publisher: "Elsevier",
+                url: "http://dblp.uni-trier.de/db/journals/cagd/"
+            },
+            {
+                title: "Computer Graphics Forum",
+                abbr: "CGF",
+                category: "graphics",
+                type: "journal",
+                rank: "B",
+                publisher: "Wiley",
+                url: "http://dblp.uni-trier.de/db/journals/cgf/"
+            },
+            {
+                title: "Computer-Aided Design",
+                abbr: "CAD",
+                category: "graphics",
+                type: "journal",
+                rank: "B",
+                publisher: "Elsevier",
+                url: "http://dblp.uni-trier.de/db/journals/cad/"
+            },
+            {
+                title: "Graphical Models",
+                abbr: "GM",
+                category: "graphics",
+                type: "journal",
+                rank: "B",
+                publisher: "Elsevier",
+                url: "http://dblp.uni-trier.de/db/journals/cvgip/"
+            },
+            {
+                title: "IEEE Transactions on Circuits and Systems for Video Technology",
+                abbr: "TCSVT",
+                category: "graphics",
+                type: "journal",
+                rank: "B",
+                publisher: "IEEE",
+                url: "http://dblp.uni-trier.de/db/journals/tcsv/"
+            },
+            {
+                title: "IEEE Transactions on Multimedia",
+                abbr: "TMM",
+                category: "graphics",
+                type: "journal",
+                rank: "B",
+                publisher: "IEEE",
+                url: "http://dblp.uni-trier.de/db/journals/tmm/"
+            },
+            {
+                title: "The Journal of the Acoustical Society of America",
+                abbr: "JASA",
+                category: "graphics",
+                type: "journal",
+                rank: "B",
+                publisher: "AIP",
+                url: "http://scitation.aip.org/content/asa/journal/jasa"
+            },
+            {
+                title: "SIAM Journal on Imaging Sciences",
+                abbr: "SIIMS",
+                category: "graphics",
+                type: "journal",
+                rank: "B",
+                publisher: "SIAM",
+                url: "http://dblp.uni-trier.de/db/journals/siamis/"
+            },
+            {
+                title: "Speech Communication",
+                abbr: "SPECOM",
+                category: "graphics",
+                type: "journal",
+                rank: "B",
+                publisher: "Elsevier",
+                url: "http://dblp.uni-trier.de/db/journals/speech/"
+            },
+
+            // C Class Journals
+            {
+                title: "Computational Geometry: Theory and Applications",
+                abbr: "CGTA",
+                category: "graphics",
+                type: "journal",
+                rank: "C",
+                publisher: "Elsevier",
+                url: "http://dblp.uni-trier.de/db/journals/comgeo/"
+            },
+            {
+                title: "Computer Animation & Virtual Worlds",
+                abbr: "CAVW",
+                category: "graphics",
+                type: "journal",
+                rank: "C",
+                publisher: "Wiley",
+                url: "https://dblp.org/db/journals/jvca/index.html"
+            },
+            {
+                title: "Computers & Graphics",
+                abbr: "C&G",
+                category: "graphics",
+                type: "journal",
+                rank: "C",
+                publisher: "Elsevier",
+                url: "http://dblp.uni-trier.de/db/journals/cg/"
+            },
+            {
+                title: "Discrete & Computational Geometry",
+                abbr: "DCG",
+                category: "graphics",
+                type: "journal",
+                rank: "C",
+                publisher: "Springer",
+                url: "http://dblp.uni-trier.de/db/journals/dcg/"
+            },
+            {
+                title: "IEEE Signal Processing Letters",
+                abbr: "SPL",
+                category: "graphics",
+                type: "journal",
+                rank: "C",
+                publisher: "IEEE",
+                url: "http://dblp.uni-trier.de/db/journals/spl/"
+            },
+            {
+                title: "IET Image Processing",
+                abbr: "IET-IPR",
+                category: "graphics",
+                type: "journal",
+                rank: "C",
+                publisher: "IET",
+                url: "http://dblp.uni-trier.de/db/journals/iet-ipr/"
+            },
+            {
+                title: "Journal of Visual Communication and Image Representation",
+                abbr: "JVCIR",
+                category: "graphics",
+                type: "journal",
+                rank: "C",
+                publisher: "Elsevier",
+                url: "http://dblp.uni-trier.de/db/journals/jvcir/"
+            },
+            {
+                title: "Multimedia Systems",
+                abbr: "MS",
+                category: "graphics",
+                type: "journal",
+                rank: "C",
+                publisher: "Springer",
+                url: "http://dblp.uni-trier.de/db/journals/mms/"
+            },
+            {
+                title: "Multimedia Tools and Applications",
+                abbr: "MTA",
+                category: "graphics",
+                type: "journal",
+                rank: "C",
+                publisher: "Springer",
+                url: "http://dblp.uni-trier.de/db/journals/mta/"
+            },
+            {
+                title: "Signal Processing",
+                abbr: "SIGPRO",
+                category: "graphics",
+                type: "journal",
+                rank: "C",
+                publisher: "Elsevier",
+                url: "http://dblp.uni-trier.de/db/journals/sigpro/"
+            },
+            {
+                title: "Signal Processing: Image Communication",
+                abbr: "IMAGE",
+                category: "graphics",
+                type: "journal",
+                rank: "C",
+                publisher: "Elsevier",
+                url: "http://dblp.uni-trier.de/db/journals/spic/"
+            },
+            {
+                title: "The Visual Computer",
+                abbr: "TVC",
+                category: "graphics",
+                type: "journal",
+                rank: "C",
+                publisher: "Springer",
+                url: "http://dblp.uni-trier.de/db/journals/vc/"
+            },
+            {
+                title: "Computational Visual Media",
+                abbr: "CVMJ",
+                category: "graphics",
+                type: "journal",
+                rank: "C",
+                publisher: "Tsinghua University; Springer",
+                url: "https://dblp.org/db/journals/cvm/index.html"
+            },
+            {
+                category: "graphics",
+                type: "conference",
+                rank: "A",
+                abbr: "ACM MM",
+                name: "ACM International Conference on Multimedia",
+                publisher: "ACM",
+                link: "http://dblp.uni-trier.de/db/conf/mm/"
+            },
+            {
+                category: "graphics",
+                type: "conference",
+                rank: "A",
+                abbr: "SIGGRAPH",
+                name: "ACM Special Interest Group on Computer Graphics",
+                publisher: "ACM",
+                link: "http://dblp.uni-trier.de/db/conf/siggraph/index.html"
+            },
+            {
+                category: "graphics",
+                type: "conference",
+                rank: "A",
+                abbr: "VR",
+                name: "IEEE Virtual Reality",
+                publisher: "IEEE",
+                link: "http://dblp.uni-trier.de/db/conf/vr/"
+            },
+            {
+                category: "graphics",
+                type: "conference",
+                rank: "A",
+                abbr: "IEEE VIS",
+                name: "IEEE Visualization Conference",
+                publisher: "IEEE",
+                link: "http://dblp.uni-trier.de/db/conf/visualization/index.html"
+            },
+
+            // B类会议
+            {
+                category: "graphics",
+                type: "conference",
+                rank: "B",
+                abbr: "ICMR",
+                name: "ACM SIGMM International Conference on Multimedia Retrieval",
+                publisher: "ACM",
+                link: "http://dblp.uni-trier.de/db/conf/mir/"
+            },
+            {
+                category: "graphics",
+                type: "conference",
+                rank: "B",
+                abbr: "I3D",
+                name: "ACM SIGGRAPH Symposium on Interactive 3D Graphics and Games",
+                publisher: "ACM",
+                link: "http://dblp.uni-trier.de/db/conf/si3d/"
+            },
+            {
+                category: "graphics",
+                type: "conference",
+                rank: "B",
+                abbr: "SCA",
+                name: "ACM SIGGRAPH/Eurographics Symposium on Computer Animation",
+                publisher: "ACM",
+                link: "http://dblp.uni-trier.de/db/conf/sca/index.html"
+            },
+            {
+                category: "graphics",
+                type: "conference",
+                rank: "B",
+                abbr: "DCC",
+                name: "Data Compression Conference",
+                publisher: "IEEE",
+                link: "http://dblp.uni-trier.de/db/conf/dcc/"
+            },
+            {
+                category: "graphics",
+                type: "conference",
+                rank: "B",
+                abbr: "Eurographics",
+                name: "Annual Conference of the European Association for Computer Graphics",
+                publisher: "Wiley/Blackwell",
+                link: "http://dblp.uni-trier.de/db/conf/eurographics/"
+            },
+            {
+                category: "graphics",
+                type: "conference",
+                rank: "B",
+                abbr: "EuroVis",
+                name: "Eurographics Conference on Visualization",
+                publisher: "ACM",
+                link: "http://dblp.uni-trier.de/db/conf/vissym/"
+            },
+            {
+                category: "graphics",
+                type: "conference",
+                rank: "B",
+                abbr: "SGP",
+                name: "Eurographics Symposium on Geometry Processing",
+                publisher: "Wiley/Blackwell",
+                link: "http://dblp.uni-trier.de/db/conf/sgp/"
+            },
+            {
+                category: "graphics",
+                type: "conference",
+                rank: "B",
+                abbr: "EGSR",
+                name: "Eurographics Symposium on Rendering",
+                publisher: "Wiley/Blackwell",
+                link: "http://dblp.uni-trier.de/db/conf/rt/"
+            },
+            {
+                category: "graphics",
+                type: "conference",
+                rank: "B",
+                abbr: "ICASSP",
+                name: "IEEE International Conference on Acoustics, Speech and Signal Processing",
+                publisher: "IEEE",
+                link: "http://dblp.uni-trier.de/db/conf/icassp/"
+            },
+            {
+                category: "graphics",
+                type: "conference",
+                rank: "B",
+                abbr: "ICME",
+                name: "IEEE International Conference on Multimedia & Expo",
+                publisher: "IEEE",
+                link: "http://dblp.uni-trier.de/db/conf/icmcs/"
+            },
+            {
+                category: "graphics",
+                type: "conference",
+                rank: "B",
+                abbr: "ISMAR",
+                name: "International Symposium on Mixed and Augmented Reality",
+                publisher: "IEEE/ACM",
+                link: "http://dblp.uni-trier.de/db/conf/ismar/"
+            },
+            {
+                category: "graphics",
+                type: "conference",
+                rank: "B",
+                abbr: "PG",
+                name: "Pacific Conference onComputer Graphics and Applications",
+                publisher: "Wiley/Blackwell",
+                link: "http://dblp.uni-trier.de/db/conf/pg/index.html"
+            },
+            {
+                category: "graphics",
+                type: "conference",
+                rank: "B",
+                abbr: "SPM",
+                name: "Symposium on Solid and Physical Modeling",
+                publisher: "SMA/Elsevier",
+                link: "http://dblp.uni-trier.de/db/conf/sma/"
+            },
+
+            // C类会议
+            {
+                category: "graphics",
+                type: "conference",
+                rank: "C",
+                abbr: "VRST",
+                name: "ACM Symposium on Virtual Reality Software and Technology",
+                publisher: "ACM",
+                link: "http://dblp2.uni-trier.de/db/conf/vrst/"
+            },
+            {
+                category: "graphics",
+                type: "conference",
+                rank: "C",
+                abbr: "CASA",
+                name: "International Conference on Computer Animation and Social Agents",
+                publisher: "Wiley",
+                link: "http://dblp.uni-trier.de/db/conf/ca/"
+            },
+            {
+                category: "graphics",
+                type: "conference",
+                rank: "C",
+                abbr: "CGI",
+                name: "Computer Graphics International",
+                publisher: "Springer",
+                link: "http://dblp.uni-trier.de/db/conf/cgi/"
+            },
+            {
+                category: "graphics",
+                type: "conference",
+                rank: "C",
+                abbr: "INTERSPEECH",
+                name: "Conference of the International Speech Communication Association",
+                publisher: "",
+                link: "http://dblp.uni-trier.de/db/conf/interspeech/index.html"
+            },
+            {
+                category: "graphics",
+                type: "conference",
+                rank: "C",
+                abbr: "GMP",
+                name: "Geometric Modeling and Processing",
+                publisher: "Elsevier",
+                link: "http://dblp.uni-trier.de/db/conf/gmp/"
+            },
+            {
+                category: "graphics",
+                type: "conference",
+                rank: "C",
+                abbr: "PacificVis",
+                name: "IEEE Pacific Visualization Symposium",
+                publisher: "IEEE",
+                link: "http://dblp.uni-trier.de/db/conf/apvis/"
+            },
+            {
+                category: "graphics",
+                type: "conference",
+                rank: "C",
+                abbr: "3DV",
+                name: "International Conference on 3D Vision",
+                publisher: "IEEE",
+                link: "https://dblp.uni-trier.de/db/conf/3dim/"
+            },
+            {
+                category: "graphics",
+                type: "conference",
+                rank: "C",
+                abbr: "CAD/Graphics",
+                name: "International Conference on Computer-Aided Design and Computer Graphics",
+                publisher: "IEEE",
+                link: "https://dblp.uni-trier.de/db/conf/cadgraphics/"
+            },
+            {
+                category: "graphics",
+                type: "conference",
+                rank: "C",
+                abbr: "ICIP",
+                name: "IEEE International Conference on Image Processing",
+                publisher: "IEEE",
+                link: "http://dblp.uni-trier.de/db/conf/icip/"
+            },
+            {
+                category: "graphics",
+                type: "conference",
+                rank: "C",
+                abbr: "MMM",
+                name: "International Conference on Multimedia Modeling",
+                publisher: "Springer",
+                link: "http://dblp.uni-trier.de/db/conf/mmm/index.html"
+            },
+            {
+                category: "graphics",
+                type: "conference",
+                rank: "C",
+                abbr: "MMAsia",
+                name: "ACM Multimedia Asia",
+                publisher: "ACM",
+                link: "https://dblp.uni-trier.de/db/conf/mmasia/index.html"
+            },
+            {
+                category: "graphics",
+                type: "conference",
+                rank: "C",
+                abbr: "SMI",
+                name: "Shape Modeling International",
+                publisher: "IEEE",
+                link: "http://dblp.uni-trier.de/db/conf/smi/"
+            },
+            {
+                category: "graphics",
+                type: "conference",
+                rank: "C",
+                abbr: "ICVRV",
+                name: "International Conference on Virtual Reality and Visualization",
+                publisher: "IEEE",
+                link: "https://www.computer.org/csdl/proceedings/1800579"
+            },
+            {
+                category: "graphics",
+                type: "conference",
+                rank: "C",
+                abbr: "CVM",
+                name: "Computational Visual Media",
+                publisher: "Tsinghua University",
+                link: "https://dblp.org/db/conf/cvm/index.html"
+            },
+            {
+                category: "graphics",
+                type: "conference",
+                rank: "C",
+                abbr: "PRCV",
+                name: "Chinese Conference on Pattern Recognition and Computer Vision",
+                publisher: "Springer",
+                link: "https://dblp.org/db/conf/prcv/index.html"
+            },
+            // Network & Information Security - A Rank Journals
+            {
+                category: "security",
+                type: "journal",
+                rank: "A",
+                abbr: "TDSC",
+                name: "IEEE Transactions on Dependable and Secure Computing",
+                publisher: "IEEE",
+                link: "http://dblp.uni-trier.de/db/journals/tdsc/"
+            },
+            {
+                category: "security",
+                type: "journal",
+                rank: "A",
+                abbr: "TIFS",
+                name: "IEEE Transactions on Information Forensics and Security",
+                publisher: "IEEE",
+                link: "http://dblp.uni-trier.de/db/journals/tifs/"
+            },
+            {
+                category: "security",
+                type: "conference",
+                rank: "A",
+                abbr: "CCS",
+                name: "ACM Conference on Computer and Communications Security",
+                publisher: "ACM",
+                link: "http://dblp.uni-trier.de/db/conf/ccs/"
+            },
+            {
+                category: "security",
+                type: "conference",
+                rank: "A",
+                abbr: "S&P",
+                name: "IEEE Symposium on Security and Privacy",
+                publisher: "IEEE",
+                link: "http://dblp.uni-trier.de/db/conf/sp/"
+            },
+            // Computer Networks - A Rank Journals
+            {
+                category: "network",
+                type: "journal",
+                rank: "A",
+                abbr: "JSAC",
+                name: "IEEE Journal on Selected Areas in Communications",
+                publisher: "IEEE",
+                link: "http://dblp.uni-trier.de/db/journals/jsac/"
+            },
+            {
+                category: "network",
+                type: "journal",
+                rank: "A",
+                abbr: "TMC",
+                name: "IEEE Transactions on Mobile Computing",
+                publisher: "IEEE",
+                link: "http://dblp.uni-trier.de/db/journals/tmc/"
+            },
+            {
+                category: "network",
+                type: "journal",
+                rank: "A",
+                abbr: "TON",
+                name: "IEEE/ACM Transactions on Networking",
+                publisher: "IEEE/ACM",
+                link: "http://dblp.uni-trier.de/db/journals/ton/"
+            },
+            // Computer Networks B类期刊
+            {
+                category: "network",
+                type: "journal",
+                rank: "B",
+                abbr: "TOIT",
+                name: "ACM Transactions on Internet Technology",
+                publisher: "ACM",
+                link: "http://dblp.uni-trier.de/db/journals/toit/"
+            },
+            {
+                category: "network",
+                type: "journal",
+                rank: "B",
+                abbr: "TOMM",
+                name: "ACM Transactions on Multimedia Computing, Communications and Applications",
+                publisher: "ACM",
+                link: "http://dblp.uni-trier.de/db/journals/tomccap/"
+            },
+            {
+                category: "network",
+                type: "journal",
+                rank: "B",
+                abbr: "TOSN",
+                name: "ACM Transactions on Sensor Networks",
+                publisher: "ACM",
+                link: "http://dblp.uni-trier.de/db/journals/tosn/"
+            },
+            {
+                category: "network",
+                type: "journal",
+                rank: "B",
+                abbr: "CN",
+                name: "Computer Networks",
+                publisher: "Elsevier",
+                link: "http://dblp.uni-trier.de/db/journals/cn/"
+            },
+            {
+                category: "network",
+                type: "journal",
+                rank: "B",
+                abbr: "TCOM",
+                name: "IEEE Transactions on Communications",
+                publisher: "IEEE",
+                link: "http://dblp.uni-trier.de/db/journals/tcom/"
+            },
+            {
+                category: "network",
+                type: "journal",
+                rank: "B",
+                abbr: "TWC",
+                name: "IEEE Transactions on Wireless Communications",
+                publisher: "IEEE",
+                link: "http://dblp.uni-trier.de/db/journals/twc/"
+            },
+            {
+                category: "network",
+                type: "conference",
+                rank: "A",
+                abbr: "SIGCOMM",
+                name: "ACM International Conference on Applications, Technologies, Architectures, and Protocols for Computer Communication",
+                publisher: "ACM",
+                link: "http://dblp.uni-trier.de/db/conf/sigcomm/"
+            },
+            {
+                category: "network",
+                type: "conference",
+                rank: "A",
+                abbr: "INFOCOM",
+                name: "IEEE International Conference on Computer Communications",
+                publisher: "IEEE",
+                link: "http://dblp.uni-trier.de/db/conf/infocom/"
+            },
+            {
+                category: "network",
+                type: "conference",
+                rank: "A",
+                abbr: "MobiCom",
+                name: "ACM International Conference on Mobile Computing and Networking",
+                publisher: "ACM",
+                link: "http://dblp.uni-trier.de/db/conf/mobicom/"
+            },
+            {
+                category: "network",
+                type: "conference",
+                rank: "A",
+                abbr: "NSDI",
+                name: "Symposium on Network System Design and Implementation",
+                publisher: "USENIX",
+                link: "http://dblp.uni-trier.de/db/conf/nsdi/"
+            },// Add the following entries to the ccf_data array:
+
+            // A Class journals
+            {
+                name: "Journal of the ACM",
+                abbr: "JACM",
+                category: "cross",
+                type: "journal",
+                rank: "A",
+                publisher: "ACM",
+                url: "http://dblp.uni-trier.de/db/journals/jacm/"
+            },
+            {
+                name: "Proceedings of the IEEE",
+                abbr: "Proc. IEEE",
+                category: "cross",
+                type: "journal",
+                rank: "A",
+                publisher: "IEEE",
+                url: "http://dblp.uni-trier.de/db/journals/pieee/"
+            },
+            {
+                name: "Science China Information Sciences",
+                abbr: "SCIS",
+                category: "cross",
+                type: "journal",
+                rank: "A",
+                publisher: "Science in China Press/Springer",
+                url: "http://dblp.uni-trier.de/db/journals/chinaf/"
+            },
+            {
+                name: "Bioinformatics",
+                abbr: "",
+                category: "cross",
+                type: "journal",
+                rank: "B",
+                publisher: "Oxford University Press",
+                url: "http://dblp.uni-trier.de/db/journals/bioinformatics/"
+            },
+            {
+                name: "Briefings in Bioinformatics",
+                abbr: "",
+                category: "cross",
+                type: "journal",
+                rank: "B",
+                publisher: "Oxford University Press",
+                url: "http://dblp.uni-trier.de/db/journals/bib/"
+            },
+            {
+                name: "Cognition",
+                abbr: "Cognition",
+                category: "cross",
+                type: "journal",
+                rank: "B",
+                publisher: "Elsevier",
+                url: "http://www.journals.elsevier.com/cognition/"
+            },
+            {
+                name: "IEEE Transactions on Automation Science and Engineering",
+                abbr: "TASAE",
+                category: "cross",
+                type: "journal",
+                rank: "B",
+                publisher: "IEEE",
+                url: "http://dblp.uni-trier.de/db/journals/tase/"
+            },
+            {
+                name: "IEEE Transactions on Geoscience and Remote Sensing",
+                abbr: "TGARS",
+                category: "cross",
+                type: "journal",
+                rank: "B",
+                publisher: "IEEE",
+                url: "http://dblp.uni-trier.de/db/journals/tgrs/"
+            },
+            {
+                name: "IEEE Transactions on Intelligent Transportation Systems",
+                abbr: "TITS",
+                category: "cross",
+                type: "journal",
+                rank: "B",
+                publisher: "IEEE",
+                url: "http://dblp.uni-trier.de/db/journals/tits/"
+            },
+            {
+                name: "IEEE Transactions on Medical Imaging",
+                abbr: "TMI",
+                category: "cross",
+                type: "journal",
+                rank: "B",
+                publisher: "IEEE",
+                url: "http://dblp.uni-trier.de/db/journals/tmi/"
+            },
+            {
+                name: "IEEE Transactions on Robotics",
+                abbr: "TR",
+                category: "cross",
+                type: "journal",
+                rank: "B",
+                publisher: "IEEE",
+                url: "http://dblp.uni-trier.de/db/journals/trob/"
+            },
+            {
+                name: "IEEE/ACM Transactions on Computational Biology and Bioinformatics",
+                abbr: "TCBB",
+                category: "cross",
+                type: "journal",
+                rank: "B",
+                publisher: "IEEE/ACM",
+                url: "http://dblp.uni-trier.de/db/journals/tcbb/"
+            },
+            {
+                name: "Journal of Computer Science and Technology",
+                abbr: "JCST",
+                category: "cross",
+                type: "journal",
+                rank: "B",
+                publisher: "SCIENCE PRESS/Springer",
+                url: "http://dblp.uni-trier.de/db/journals/jcst/"
+            },
+            {
+                name: "Journal of the American Medical Informatics Association",
+                abbr: "JAMIA",
+                category: "cross",
+                type: "journal",
+                rank: "B",
+                publisher: "BMJ Journals",
+                url: "http://dblp.uni-trier.de/db/journals/jamia/"
+            },
+            {
+                name: "PLOS Computational Biology",
+                abbr: "",
+                category: "cross",
+                type: "journal",
+                rank: "B",
+                publisher: "Public Library of Science",
+                url: "http://dblp.uni-trier.de/db/journals/plosdb/"
+            },
+            {
+                name: "The Computer Journal",
+                abbr: "",
+                category: "cross",
+                type: "journal",
+                rank: "B",
+                publisher: "Oxford University Press",
+                url: "http://dblp.uni-trier.de/db/journals/cj/"
+            },
+            {
+                name: "World Wide Web",
+                abbr: "WWW",
+                category: "cross",
+                type: "journal",
+                rank: "B",
+                publisher: "Springer",
+                url: "https://dblp.org/db/journals/www/index.html"
+            },
+            {
+                name: "Frontiers of Computer Science",
+                abbr: "FCS",
+                category: "cross",
+                type: "journal",
+                rank: "B",
+                publisher: "Higher Education Press",
+                url: "http://dblp.uni-trier.de/db/journals/fcsc/"
+            },
+
+            // C Class journals
+            {
+                name: "BMC Bioinformatics",
+                abbr: "",
+                category: "cross",
+                type: "journal",
+                rank: "C",
+                publisher: "BioMed Central",
+                url: "http://dblp.uni-trier.de/db/journals/bmcbi/"
+            },
+            {
+                name: "Cybernetics and Systems",
+                abbr: "",
+                category: "cross",
+                type: "journal",
+                rank: "C",
+                publisher: "Taylor & Francis",
+                url: "http://dblp.uni-trier.de/db/journals/cas/"
+            },
+            {
+                name: "IEEE Geoscience and Remote Sensing Letters",
+                abbr: "",
+                category: "cross",
+                type: "journal",
+                rank: "C",
+                publisher: "IEEE",
+                url: "http://dblp.uni-trier.de/db/journals/lgrs/"
+            },
+            {
+                name: "IEEE Journal of Biomedical and Health Informatics",
+                abbr: "JBHI",
+                category: "cross",
+                type: "journal",
+                rank: "C",
+                publisher: "IEEE",
+                url: "http://dblp.uni-trier.de/db/journals/titb/"
+            },
+            {
+                name: "IEEE Transactions on Big Data",
+                abbr: "TBD",
+                category: "cross",
+                type: "journal",
+                rank: "C",
+                publisher: "IEEE",
+                url: "https://dblp.uni-trier.de/db/journals/tbd/"
+            },
+            {
+                name: "IET Intelligent Transport Systems",
+                abbr: "",
+                category: "cross",
+                type: "journal",
+                rank: "C",
+                publisher: "IET",
+                url: "http://digital-library.theiet.org/content/journals/iet-its"
+            },
+            {
+                name: "Journal of Biomedical Informatics",
+                abbr: "JBI",
+                category: "cross",
+                type: "journal",
+                rank: "C",
+                publisher: "Elsevier",
+                url: "https://dblp.uni-trier.de/db/journals/jbi/"
+            },
+            {
+                name: "Medical Image Analysis",
+                abbr: "",
+                category: "cross",
+                type: "journal",
+                rank: "C",
+                publisher: "Elsevier",
+                url: "http://dblp.uni-trier.de/db/journals/mia/"
+            },
+            {
+                name: "IEEE Transactions on Industrial Informatics",
+                abbr: "TII",
+                category: "cross",
+                type: "journal",
+                rank: "C",
+                publisher: "IEEE",
+                url: "https://dblp.org/db/journals/tii/index.html"
+            },
+            {
+                name: "ACM Transactions on Cyber-Physical Systems",
+                abbr: "TCPS",
+                category: "cross",
+                type: "journal",
+                rank: "C",
+                publisher: "ACM",
+                url: "https://dblp.org/db/journals/tcps/index.html"
+            },
+            {
+                name: "ACM Transactions on Computing Education",
+                abbr: "TOCE",
+                category: "cross",
+                type: "journal",
+                rank: "C",
+                publisher: "ACM",
+                url: "https://dblp.org/db/journals/jeric/index.html"
+            },
+            {
+                name: "Frontiers of Information Technology & Electronic Engineering",
+                abbr: "FITEE",
+                category: "cross",
+                type: "journal",
+                rank: "C",
+                publisher: "Springer",
+                url: "https://dblp.org/db/journals/jzusc/index.html"
+            },
+            {
+                name: "IEEE Transactions on Computational Social Systems",
+                abbr: "TCSS",
+                category: "cross",
+                type: "journal",
+                rank: "C",
+                publisher: "IEEE",
+                url: "https://dblp.org/db/journals/tcss/index.html"
+            },
+            {
+                name: "IEEE Transactions on Reliability",
+                abbr: "",
+                category: "cross",
+                type: "journal",
+                rank: "C",
+                publisher: "IEEE",
+                url: "https://dblp.org/db/journals/tr/index.html"
+            },
+        ];
+
+
+        // Filter and display functions
+        function filterData() {
+            const category = document.getElementById('categoryFilter').value;
+            const rank = document.getElementById('rankFilter').value;
+            const type = document.getElementById('typeFilter').value;
+            const search = document.getElementById('search').value.toLowerCase();
+
+            const filtered = ccfData.filter(item => {
+                return (!category || item.category === category) &&
+                    (!rank || item.rank === rank) &&
+                    (!type || item.type === type) &&
+                    (!search ||
+                        item.name.toLowerCase().includes(search) ||
+                        item.abbr.toLowerCase().includes(search));
+            });
+
+            displayData(filtered);
+            updateCount(filtered.length);
+        }
+
+        function displayData(data) {
+            const tbody = document.querySelector('#ccfTable tbody');
+            tbody.innerHTML = data.map(item => `
+                <tr class="rank-${item.rank}">
+                    <td>${getCategoryName(item.category)}</td>
+                    <td>${item.type}</td>
+                    <td>${item.rank}</td>
+                    <td>${item.abbr}</td>
+                    <td>${item.name}</td>
+                    <td>${item.publisher}</td>
+                    <td><a href="${item.link}" target="_blank">Link</a></td>
+                </tr>
+            `).join('');
+        }
+
+        function updateCount(count) {
+            document.getElementById('resultCount').textContent = count;
+        }
+
+        function getCategoryName(code) {
+            const categories = {
+                'arch': 'Architecture/Parallel/Distributed',
+                'network': 'Computer Networks',
+                'security': 'Security',
+                'theory': 'CS Theory',
+                'graphics': 'Graphics/Multimedia',
+                'ai': 'AI',
+                'hci': 'HCI',
+                'cross': 'Cross/Emerging'
+            };
+            return categories[code] || code;
+        }
+
+        // Event listeners
+        document.getElementById('categoryFilter').addEventListener('change', filterData);
+        document.getElementById('rankFilter').addEventListener('change', filterData);
+        document.getElementById('typeFilter').addEventListener('change', filterData);
+        document.getElementById('search').addEventListener('input', filterData);
+
+        // Initial display
+        displayData(ccfData);
+        updateCount(ccfData.length);
+    </script>
+</body>
+
+</html>
